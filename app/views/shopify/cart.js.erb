@@ -1,0 +1,311 @@
+let CART = {}
+let FORM = {}
+const WAREHOUSES = {
+  'Panavision Sydney': {
+    'company': 'Panavision Sydney',
+    'city': 'Lane Cove',
+    'address1': 'Unit 1, Gnd Floor, 706 MowbrayRd',
+    'address2': '-',
+    'zip': '2066',
+    'province': 'NSW',
+    'country': 'Australia'
+  },
+  'Southern Cross Cameras': {
+    'company': 'Southern Cross Cameras',
+    'city': 'Chatswood East Sydney',
+    'address1': '9U /175 Lower Gibbs Street',
+    'address2': '-',
+    'zip': '2067',
+    'province': 'NSW',
+    'country': 'Australia'
+  },
+  'Cinoptix Sydney': {
+    'company': 'Cinoptix Camera Rentals',
+    'city': 'Chatswood',
+    'address1': '28/29 Barcoo St.',
+    'address2': '-',
+    'zip': '2067',
+    'province': 'NSW',
+    'country': 'Australia'
+  },
+  'VA Digital Hire Sydney': {
+    'company': 'VA Digital Hire Sydney',
+    'city': 'Moore Park',
+    'address1': 'Fox Studios (Gate D Professional Entrance ) 44B, 38 Driver Ave',
+    'address2': '-',
+    'zip': '2021',
+    'province': 'NSW',
+    'country': 'Australia'
+  },
+  'Gear Head Sydney': {
+    'company': 'Gear Head Sydney',
+    'city': 'Marrickville',
+    'address1': 'Unit 5,168-180 Victoria Rd',
+    'address2': '-',
+    'zip': '2204',
+    'province': 'NSW',
+    'country': 'Australia'
+  },
+};
+
+const DELIVERY_OPTIONS = {
+  to_home: {
+    label: 'Ship to Address'
+  },
+  from_store: {
+    label: 'Ship to Gear Check',
+    addresses: Object.assign({}, WAREHOUSES)
+  },
+  from_warehouse: {
+    label: 'Warehouse Pick-up',
+    addresses: {
+      'Warehouse Pickup': {
+        'company': 'Warehouse Pick-up',
+        'city': 'Haymarket',
+        'address1': 'Level 1 Shop T48',
+        'address2': '-',
+        'zip': '2000',
+        'province': 'NSW',
+        'country': 'Australia'
+      }
+    }
+  }
+};
+
+(function() {
+  let cart = fetch('/cart.js')
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function(cart) {
+      let warehouse = localStorage.getItem('warehouse')
+      if(warehouse) {
+        cart.attributes[DELIVERY_OPTIONS[localStorage.getItem('delivery_option')].label] = warehouse
+      }
+      CART = cart
+      setup(cart)
+    });
+}) ();
+
+function setup(cart) {
+  let template = document.querySelector('[data-section-id="cart-template"]');
+
+  if (!template) {
+    return;
+  }
+  let target = template.querySelector('form')
+  FORM = target
+  let html = getHTML(cart)
+  const interval = setInterval(function() {
+    try {
+      target.insertBefore(html, target.lastChild)
+      clearInterval(interval)
+      var css = `
+        .custom-ml-1 {
+          margin-left: 3px;
+        }
+
+        .custom-fade-in {
+          visibility: visible;
+          opacity: 1;
+          transition: opacity 2s linear;
+        }
+
+        .custom-fade-out {
+          visibility: hidden;
+          opacity: 0;
+          transition: visibility 0s 2s, opacity 2s linear;
+        }
+
+        .hidden {
+          display: none;
+        }
+
+        .selected {
+          color: green;
+        }
+      `;
+      head = document.head || document.getElementsByTagName('head')[0];
+      style = document.createElement('style');
+
+      head.appendChild(style);
+
+      style.type = 'text/css';
+      if (style.styleSheet){
+        // This is required for IE8 and below.
+        style.styleSheet.cssText = css;
+      } else {
+        style.appendChild(document.createTextNode(css));
+      }
+
+      target.setAttribute('action', generateCheckoutUrl())
+    } catch (e) {
+    }
+  }, 100);
+}
+
+
+function generateCheckoutUrl() {
+  let storedValue = localStorage.getItem('delivery_option');
+  let url = '/cart'
+  if (storedValue && DELIVERY_OPTIONS[storedValue] && DELIVERY_OPTIONS[storedValue].addresses) {
+    let data = DELIVERY_OPTIONS[storedValue]
+    let warehouse = ''
+    if (Object.keys(DELIVERY_OPTIONS[storedValue].addresses).length > 1) {
+      warehouse = document.querySelector(`select[name='attributes[${data.label}]']`).value
+      getHTML().querySelectorAll('select:not(.hidden)').forEach(function (el) {
+        if (el.name !== `attributes[${data.label}]`) {
+          hide(el)
+        }
+      })
+      let select = getHTML().querySelector(`select[name='attributes[${data.label}]']`)
+      if(select && select.classList.contains('hidden')) {
+        show(select)
+      }
+    } else {
+      warehouse = Object.keys(data.addresses)[0]
+    }
+    if (warehouse) {
+      url += '?'
+      for (let key in data.addresses[warehouse]) {
+        value = data.addresses[warehouse][key]
+        url += 'checkout[shipping_address]['+key+']='+value+'&';
+        try {
+          addressPreview().querySelector(`.warehouse__${key}`).innerHTML = value
+        } catch (e) {
+        }
+      }
+    } else {
+      addressPreview().querySelectorAll('div').forEach(function (el) {
+        el.innerHTML = ''
+      })
+    }
+
+    if (addressPreview().classList.contains('hidden')) {
+      show(addressPreview())
+    }
+  } else {
+    getHTML().querySelectorAll('select:not(.hidden)').forEach(function (el) {
+      hide(el)
+    })
+    hide(addressPreview())
+  }
+  if (url === '/cart') return encodeURI(url)
+  return encodeURI(url+'step=contact_information');
+}
+
+function* generateHTML() {
+  let parser = new DOMParser()
+
+  let wrapper = parser.parseFromString(`
+    <div class="delivery__methods">
+    </div>
+  `, 'text/xml').activeElement
+  for (let option in DELIVERY_OPTIONS) {
+    let container = parser.parseFromString(`
+      <div class="custom_delivery">
+      </div>
+    `, 'text/xml').activeElement
+    let appendItem = ''
+    const data = DELIVERY_OPTIONS[option]
+    let button = parser.parseFromString(`
+        <button class="custom__deliver_btn btn" data-delivery="${option}">${data.label}</button>
+      `, 'text/xml').activeElement
+    let selected = localStorage.getItem('delivery_option')
+    selected === option && button.classList.add('selected')
+
+    button.addEventListener('click', function (evt) {
+      evt.preventDefault()
+      let selected = getHTML().querySelector('.custom__deliver_btn.selected')
+      selected && selected.classList.remove('selected')
+      button.classList.add('selected')
+      localStorage.setItem('delivery_option', option);
+      FORM.setAttribute('action', generateCheckoutUrl())
+    })
+
+    if(!data.addresses) {
+      //
+    } else if(Object.keys(data.addresses).length > 0) {
+      if(data.allow_customization) {
+
+      } else {
+        container = parser.parseFromString(`
+          <div class="click_collect">
+          </div>
+        `, 'text/xml').activeElement
+
+        appendItem = generateSelect(data)
+      }
+    }
+    button && container.append(button)
+    appendItem && container.append(appendItem)
+    wrapper.append(container)
+  }
+
+  wrapper.append(addressPreview())
+  while (true) {
+    yield wrapper
+  }
+}
+let htmlGenerator = generateHTML()
+
+function getHTML(cart) {
+  return htmlGenerator.next().value
+}
+
+function generateSelect(data) {
+  let select = document.createElement('select')
+  select.name = `attributes[${data.label}]`
+  select.classList.add('hidden')
+  let defaultOption = new Option('-- Select --', '', true, !CART.attributes[data.label])
+  select.options.add(defaultOption)
+  for(const address in data.addresses) {
+    const option = new Option(address, address, false, CART.attributes[data.label] === address)
+    select.options.add(option)
+  }
+
+  select.addEventListener('change', function (ev) {
+    FORM.setAttribute('action', generateCheckoutUrl())
+    localStorage.setItem('warehouse', select.value)
+  })
+
+  return select
+}
+
+function* generateAddressPreview() {
+  let html = new DOMParser().parseFromString(`
+    <div class="warehouse__selected text-right" style="display:none;border:1px solid #949494;padding:10px;margin-bottom:25px;">
+      <b>Your order will be delivered to:</b>
+      <div class="warehouse__company"></div>
+      <div class="warehouse__address1"></div>
+      <div class="warehouse__city"></div>
+      <div class="warehouse__zip"></div>
+    </div>
+  `, 'text/xml').activeElement
+  while(true) {
+    yield html
+  }
+}
+
+const addressPreviewGenerator = generateAddressPreview()
+
+function addressPreview() {
+  return addressPreviewGenerator.next().value
+}
+
+function hide(el) {
+  el.classList.add('custom-fade-out')
+  setTimeout(function () {
+    el.classList.remove('custom-fade-out')
+    el.classList.add('hidden')
+  }, 2000)
+}
+
+function show(el) {
+  el.classList.remove('hidden')
+  el.classList.add('custom-fade-in')
+  setTimeout(function () {
+    el.classList.remove('custom-fade-in')
+  }, 2000)
+}
+
