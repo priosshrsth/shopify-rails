@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
       user: {
         name: 'Dante Spardason',
         age: 28,
-        address: 'Dhulikhel'
+        address: 'Dhulikhel - 3'
       }
     }
   end

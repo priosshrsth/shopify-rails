@@ -1,31 +1,27 @@
 {
-  "application.js": "/frontend/js/application-4b8ff8f826c5a702fbcb.js",
-  "application.js.map": "/frontend/js/application-4b8ff8f826c5a702fbcb.js.map",
-  "dashboard.css": "/frontend/css/dashboard-9388ae0b.css",
-  "dashboard.css.map": "/frontend/css/dashboard-9388ae0b.css.map",
-  "dashboard.js": "/frontend/js/dashboard-1214d500e96c0a2a264b.js",
-  "dashboard.js.map": "/frontend/js/dashboard-1214d500e96c0a2a264b.js.map",
+  "application.js": "/frontend/js/application-380eac2351dd1078b1b1.js",
+  "application.js.map": "/frontend/js/application-380eac2351dd1078b1b1.js.map",
+  "dashboard.css": "/frontend/css/dashboard-7332dc8a.css",
+  "dashboard.js": "/frontend/js/dashboard-45ab548d6134d07876cd.js",
+  "dashboard.js.map": "/frontend/js/dashboard-45ab548d6134d07876cd.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/frontend/js/application-4b8ff8f826c5a702fbcb.js"
+        "/frontend/js/application-380eac2351dd1078b1b1.js"
       ],
       "js.map": [
-        "/frontend/js/application-4b8ff8f826c5a702fbcb.js.map"
+        "/frontend/js/application-380eac2351dd1078b1b1.js.map"
       ]
     },
     "dashboard": {
       "css": [
-        "/frontend/css/dashboard-9388ae0b.css"
+        "/frontend/css/dashboard-7332dc8a.css"
       ],
       "js": [
-        "/frontend/js/dashboard-1214d500e96c0a2a264b.js"
-      ],
-      "css.map": [
-        "/frontend/css/dashboard-9388ae0b.css.map"
+        "/frontend/js/dashboard-45ab548d6134d07876cd.js"
       ],
       "js.map": [
-        "/frontend/js/dashboard-1214d500e96c0a2a264b.js.map"
+        "/frontend/js/dashboard-45ab548d6134d07876cd.js.map"
       ]
     }
   },
