@@ -4,5 +4,4 @@ module Slack
   def self.postText(data)
     HTTParty.post URL, body: {"text" => data.to_s}.to_json, headers: {'content-type' => 'application/json'}
   end
-
 end

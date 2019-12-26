@@ -24,6 +24,7 @@ module Marketplace
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.paths['config/routes.rb'].concat Dir[Rails.root.join("routes/*.rb")]
+    config.autoload_paths += Dir["#{config.root}/app/helpers/global/**/"]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
