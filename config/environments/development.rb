@@ -61,7 +61,4 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << "localhost"
-
-
-  config.hosts << ENV.fetch('APP_URL', '').gsub(/(http:\/\/|https:\/\/)(.*)(\/$)/, '\2')
 end
