@@ -1,0 +1,37 @@
+{
+  "application.js": "/frontend/js/application-4b8ff8f826c5a702fbcb.js",
+  "application.js.map": "/frontend/js/application-4b8ff8f826c5a702fbcb.js.map",
+  "dashboard.css": "/frontend/css/dashboard-9388ae0b.css",
+  "dashboard.css.map": "/frontend/css/dashboard-9388ae0b.css.map",
+  "dashboard.js": "/frontend/js/dashboard-1214d500e96c0a2a264b.js",
+  "dashboard.js.map": "/frontend/js/dashboard-1214d500e96c0a2a264b.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/frontend/js/application-4b8ff8f826c5a702fbcb.js"
+      ],
+      "js.map": [
+        "/frontend/js/application-4b8ff8f826c5a702fbcb.js.map"
+      ]
+    },
+    "dashboard": {
+      "css": [
+        "/frontend/css/dashboard-9388ae0b.css"
+      ],
+      "js": [
+        "/frontend/js/dashboard-1214d500e96c0a2a264b.js"
+      ],
+      "css.map": [
+        "/frontend/css/dashboard-9388ae0b.css.map"
+      ],
+      "js.map": [
+        "/frontend/js/dashboard-1214d500e96c0a2a264b.js.map"
+      ]
+    }
+  },
+  "media/fonts/MaterialIcons-Regular.eot": "/frontend/media/fonts/MaterialIcons-Regular-96c47680.eot",
+  "media/fonts/MaterialIcons-Regular.ttf": "/frontend/media/fonts/MaterialIcons-Regular-da4ea5cd.ttf",
+  "media/fonts/MaterialIcons-Regular.woff": "/frontend/media/fonts/MaterialIcons-Regular-29b882f0.woff",
+  "media/fonts/MaterialIcons-Regular.woff2": "/frontend/media/fonts/MaterialIcons-Regular-0509ab09.woff2",
+  "media/images/logo.svg": "/frontend/media/images/logo-63a7d78d.svg"
+}
