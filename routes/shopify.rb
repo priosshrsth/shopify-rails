@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     get 'install_cart', to: 'shopify#modify_theme'
     get 'cart', to: 'shopify#cart'
     match "*any", to: "application#index", via: :all
+    get 'custom-cart' => 'shopify#custom_cart'
   end
 end

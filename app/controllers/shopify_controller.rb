@@ -22,4 +22,9 @@ class ShopifyController < AuthenticatedController
       format.js {render layout: false}
     end
   end
+
+  def custom_cart
+    @products = ShopifyAPI::Product.find(:all, :params => {:limit => 10})
+    render :cart
+  end
 end

@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <% application_name = ShopifyApp.configuration.application_name %>
-    <title><%= application_name %></title>
-    <%= stylesheet_link_tag 'application' %>
-    <% if ShopifyApp.use_webpacker? %>
-      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% else %>
-      <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
-    <% end %>
-    <%= csrf_meta_tags %>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>Shopify Embedded Example App</title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <script src="https://cdn.shopify.com/s/assets/external/pos_app.js?<%= Time.now.strftime('%Y%m%d%H') %>"></script>
+</head>
 
-  <body>
-    <div class="app-wrapper">
-      <div class="app-content">
-        <main role="main">
-          <%= yield %>
-        </main>
-      </div>
-    </div>
+<body>
+<script type="text/javascript">
+  // allow :active styles for CSS
+  document.addEventListener("touchstart", function(){}, true);
 
-    <%= render 'layouts/flash_messages' %>
+  ShopifyPOS.init({
+    apiKey: "<%= ShopifyApp.configuration.api_key %>",
+    shopOrigin: "<%= "https://#{ @shop_session.url }" if @shop_session %>",
+    debug: <%= Rails.env.development? ? 'true' : 'false' %>,
+    forceRedirect: true
+  });
+</script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-    <script src="https://cdn.shopify.com/s/assets/external/app.js?<%= Time.now.strftime('%Y%m%d%H') %>"></script>
+<div class="app-wrapper">
+  <div class="app-content">
+    <main role="main">
+      <%= yield %>
+    </main>
+  </div>
+</div>
 
-    <%= content_tag(:div, nil, id: 'shopify-app-init', data: {
-      api_key: ShopifyApp.configuration.api_key,
-      shop_origin: ("https://#{ @shop_session.url }" if @shop_session),
-      debug: Rails.env.development?
-    } ) %>
+<%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
 
-    <% if content_for?(:javascript) %>
-      <div id="ContentForJavascript" data-turbolinks-temporary>
-        <%= yield :javascript %>
-      </div>
-    <% end %>
-  </body>
+<% if content_for?(:javascript) %>
+  <div id="ContentForJavascript" data-turbolinks-temporary>
+    <%= yield :javascript %>
+  </div>
+<% end %>
+</body>
 </html>
