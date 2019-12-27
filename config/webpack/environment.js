@@ -2,6 +2,14 @@ const { environment } = require('@rails/webpacker');
 const { VueLoaderPlugin } = require('vue-loader');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
+environment.plugins.prepend('Provide',
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    Popper: ['popper.js', 'default']
+  })
+)
+
 const vueLoader = require('./loaders/vueLoader');
 const sassLoader = require('./loaders/sassLoader');
 

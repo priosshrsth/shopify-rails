@@ -5,6 +5,7 @@
   <title>Shopify Embedded Example App</title>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tags %>
+  <%= javascript_pack_tag 'shopify', 'data-turbolinks-track': 'reload' %>
   <script src="https://cdn.shopify.com/s/assets/external/pos_app.js?<%= Time.now.strftime('%Y%m%d%H') %>"></script>
 </head>
 
@@ -20,7 +21,6 @@
     forceRedirect: true
   });
 </script>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
 <div class="app-wrapper">
   <div class="app-content">
@@ -29,8 +29,6 @@
     </main>
   </div>
 </div>
-
-<%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
 
 <% if content_for?(:javascript) %>
   <div id="ContentForJavascript" data-turbolinks-temporary>
