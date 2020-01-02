@@ -1,31 +1,39 @@
 {
-  "application.js": "/frontend/js/application-4b8ff8f826c5a702fbcb.js",
-  "application.js.map": "/frontend/js/application-4b8ff8f826c5a702fbcb.js.map",
-  "dashboard.css": "/frontend/css/dashboard-a0f81af6.css",
-  "dashboard.css.map": "/frontend/css/dashboard-a0f81af6.css.map",
-  "dashboard.js": "/frontend/js/dashboard-3ff39704f5d96e1a2a54.js",
-  "dashboard.js.map": "/frontend/js/dashboard-3ff39704f5d96e1a2a54.js.map",
+  "application.js": "/frontend/js/application-fa349045e371ed35ec83.js",
+  "application.js.map": "/frontend/js/application-fa349045e371ed35ec83.js.map",
+  "dashboard.css": "/frontend/css/dashboard-9388ae0b.css",
+  "dashboard.css.map": "/frontend/css/dashboard-9388ae0b.css.map",
+  "dashboard.js": "/frontend/js/dashboard-b17e1bfa3325bb98772a.js",
+  "dashboard.js.map": "/frontend/js/dashboard-b17e1bfa3325bb98772a.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/frontend/js/application-4b8ff8f826c5a702fbcb.js"
+        "/frontend/js/application-fa349045e371ed35ec83.js"
       ],
       "js.map": [
-        "/frontend/js/application-4b8ff8f826c5a702fbcb.js.map"
+        "/frontend/js/application-fa349045e371ed35ec83.js.map"
       ]
     },
     "dashboard": {
       "css": [
-        "/frontend/css/dashboard-a0f81af6.css"
+        "/frontend/css/dashboard-9388ae0b.css"
       ],
       "js": [
-        "/frontend/js/dashboard-3ff39704f5d96e1a2a54.js"
+        "/frontend/js/dashboard-b17e1bfa3325bb98772a.js"
       ],
       "css.map": [
-        "/frontend/css/dashboard-a0f81af6.css.map"
+        "/frontend/css/dashboard-9388ae0b.css.map"
       ],
       "js.map": [
-        "/frontend/js/dashboard-3ff39704f5d96e1a2a54.js.map"
+        "/frontend/js/dashboard-b17e1bfa3325bb98772a.js.map"
+      ]
+    },
+    "shopify": {
+      "js": [
+        "/frontend/js/shopify-8cd50cfdd34658d03ccf.js"
+      ],
+      "js.map": [
+        "/frontend/js/shopify-8cd50cfdd34658d03ccf.js.map"
       ]
     }
   },
@@ -33,5 +41,7 @@
   "media/fonts/MaterialIcons-Regular.ttf": "/frontend/media/fonts/MaterialIcons-Regular-da4ea5cd.ttf",
   "media/fonts/MaterialIcons-Regular.woff": "/frontend/media/fonts/MaterialIcons-Regular-29b882f0.woff",
   "media/fonts/MaterialIcons-Regular.woff2": "/frontend/media/fonts/MaterialIcons-Regular-0509ab09.woff2",
-  "media/images/logo.svg": "/frontend/media/images/logo-63a7d78d.svg"
+  "media/images/logo.svg": "/frontend/media/images/logo-63a7d78d.svg",
+  "shopify.js": "/frontend/js/shopify-8cd50cfdd34658d03ccf.js",
+  "shopify.js.map": "/frontend/js/shopify-8cd50cfdd34658d03ccf.js.map"
 }
