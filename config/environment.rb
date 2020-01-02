@@ -2,18 +2,18 @@
 require_relative 'application'
 
 Rails.application.configure do
-  config.hosts << ENV.fetch('APP_URL', '').gsub(/(http:\/\/|https:\/\/)(.*)(\/$)/, '\2')
-end
+  URL = ENV.fetch('APP_URL', 'http://localhost:3000').chomp('/')
 
-APP_URL = ENV.fetch('APP_URL', 'http://localhost:3000').chomp('/')
-
-if(!APP_URL.start_with?('http'))
-  if (APP_URL.start-with?('localhost'))
-    APP_URL = 'http://' + APP_URL
-  elsif
-    APP_URL = 'https://' + APP_URL
+  if(!URL.start_with?('http'))
+    if (URL.start_with?('localhost'))
+      URL = 'http://' + URL
+    elsif
+    URL = 'https://' + URL
+    end
   end
-end
 
+  ENV.store('APP_URL', URL)
+  config.hosts << URL.gsub(/(http:\/\/|https:\/\/)(.*)/, '\2')
+end
 # Initialize the Rails application.
 Rails.application.initialize!

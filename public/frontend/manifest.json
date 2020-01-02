@@ -1,17 +1,17 @@
 {
-  "application.js": "/frontend/js/application-4b8ff8f826c5a702fbcb.js",
-  "application.js.map": "/frontend/js/application-4b8ff8f826c5a702fbcb.js.map",
+  "application.js": "/frontend/js/application-1849718c69b91e2ef286.js",
+  "application.js.map": "/frontend/js/application-1849718c69b91e2ef286.js.map",
   "dashboard.css": "/frontend/css/dashboard-9388ae0b.css",
   "dashboard.css.map": "/frontend/css/dashboard-9388ae0b.css.map",
-  "dashboard.js": "/frontend/js/dashboard-1214d500e96c0a2a264b.js",
-  "dashboard.js.map": "/frontend/js/dashboard-1214d500e96c0a2a264b.js.map",
+  "dashboard.js": "/frontend/js/dashboard-ac796c14ca3ec856e4e1.js",
+  "dashboard.js.map": "/frontend/js/dashboard-ac796c14ca3ec856e4e1.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/frontend/js/application-4b8ff8f826c5a702fbcb.js"
+        "/frontend/js/application-1849718c69b91e2ef286.js"
       ],
       "js.map": [
-        "/frontend/js/application-4b8ff8f826c5a702fbcb.js.map"
+        "/frontend/js/application-1849718c69b91e2ef286.js.map"
       ]
     },
     "dashboard": {
@@ -19,13 +19,13 @@
         "/frontend/css/dashboard-9388ae0b.css"
       ],
       "js": [
-        "/frontend/js/dashboard-1214d500e96c0a2a264b.js"
+        "/frontend/js/dashboard-ac796c14ca3ec856e4e1.js"
       ],
       "css.map": [
         "/frontend/css/dashboard-9388ae0b.css.map"
       ],
       "js.map": [
-        "/frontend/js/dashboard-1214d500e96c0a2a264b.js.map"
+        "/frontend/js/dashboard-ac796c14ca3ec856e4e1.js.map"
       ]
     }
   },

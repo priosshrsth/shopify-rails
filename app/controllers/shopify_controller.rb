@@ -6,8 +6,6 @@ class ShopifyController < AuthenticatedController
   def index
     @products = ShopifyAPI::Product.find(:all, params: { limit: 10 })
     @webhooks = ShopifyAPI::Webhook.find(:all)
-
-    render "application/index"
   end
 
   def modify_theme
