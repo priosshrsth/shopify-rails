@@ -23,7 +23,7 @@ gem 'foreman', '~> 0.86.0'
 gem 'api_error_handler'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.0'
-gem 'httparty', '~> 0.17.1'
+gem 'httparty', '~> 0.21.0'
 gem 'shopify_app'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
